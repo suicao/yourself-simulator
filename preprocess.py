@@ -16,7 +16,12 @@ def parse_conversation(msg_path, owner):
     replaced = re.sub(r'\\u00([a-f0-9]{2})', lambda x: chr(int(x.group(1), 16)), text)
     buffer = [ord(c) for c in replaced]
     result = bytes(buffer).decode('utf-8')
-    m = json.loads(result)
+    try:
+        m = json.loads(result)
+    except Exception as e:
+        print(f"Error parsing {msg_path}")
+        return None
+
     participants = [x['name'] for x in m['participants']]
     if len(participants) < 2:
         return None
@@ -37,12 +42,16 @@ def parse_conversation(msg_path, owner):
 
 convs = []
 for conv in tqdm(os.listdir(args.input_path)):
-    for fn in os.listdir(f'{args.input_path}/{conv}'):
-        if 'message_' in fn:
-            x = parse_conversation(msg_path=f'{args.input_path}/{conv}/{fn}',
-                                   owner=args.owner)
-            if x is not None:
-                convs.append(x)
+    try:
+        for fn in os.listdir(f'{args.input_path}/{conv}'):
+            if 'message_' in fn:
+                x = parse_conversation(msg_path=f'{args.input_path}/{conv}/{fn}',
+                                       owner=args.owner)
+                if x is not None:
+                    convs.append(x)
+    except Exception as e:
+        print(e)
+        continue
 
 with open(args.output_path, "wt") as f:
     json.dump(convs, f, ensure_ascii=False, indent=4)
