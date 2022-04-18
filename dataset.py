@@ -40,7 +40,5 @@ class LineByLineBotDataset(Dataset):
                 line += f"</s> {x['content']}"
             else:
                 line += f"<s> {x['content']}"
-        #         print(line)
-        #         print(self.tokenizer.encode(line ,add_special_tokens=False,max_length=self.block_size))
         return torch.tensor(self.tokenizer.encode(line, add_special_tokens=False, max_length=self.block_size),
                             dtype=torch.long)
