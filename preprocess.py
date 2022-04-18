@@ -44,5 +44,5 @@ for conv in tqdm(os.listdir(args.input_path)):
             if x is not None:
                 convs.append(x)
 
-with open(args.output_path, "wb") as f:
+with open(args.output_path, "wt") as f:
     json.dump(convs, f, ensure_ascii=False, indent=4)
