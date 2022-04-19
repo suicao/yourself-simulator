@@ -55,3 +55,7 @@ There are a few candidates for the pretrained Vietnamese model, here I picked `N
 - https://huggingface.co/VietAI/gpt-neo-1.3B-vietnamese-news or https://huggingface.co/VietAI/gpt-j-6B-vietnamese-news (very large models)
 
 ### Inference
+Run the following command to start a convesation with your trained model
+```commandline
+python infer.py  --model_name_or_path "NlpHUST/gpt-neo-vi-small" --checkpoint_path ./output/pytorch_model.bin
+```
