@@ -1,5 +1,5 @@
 # DIY chatbot from your Facebook data and pretrained language models
-
+![](https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/277738725_5261827560549331_8321740197298223750_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=730e14&_nc_ohc=S9O1ec36Mq0AX9wEKHt&tn=7hyRwwmFcJX8j_Be&_nc_ht=scontent.fsgn5-15.fna&oh=00_AT-QhqdSjoI897rofBFrddZxXf2_-7mHyTxY1X771IacXQ&oe=62628CEE)
 ## How this works
 This model generates replies based on DialoGPT style language modeling, by concatenating all dialog turns in a conversation into a long text.
 
