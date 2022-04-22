@@ -57,12 +57,13 @@ while True:
         else:
             line += f"<s> {x['content']}"
     line += "</s>"
-    input_ids = torch.tensor([tokenizer.encode(line, add_special_tokens=False)]).cuda()
+    input_ids = tokenizer.encode(line, add_special_tokens=False)[-80:]
+    input_ids = torch.tensor([input_ids]).cuda()
     outputs = np.array([x for x in inference(input_ids, deterministic=False, n_sequences=5) if len(x) > 0])
     
     n_msgs = len([x for x in line.replace("</s>","<s>").split("<s>") if len(x) > 0])
     response = np.random.choice(outputs)
     response = [x for x in response.replace("</s>","<s>").split("<s>") if len(x) > 0][n_msgs].strip()
     
-    print("Bot:", response, "\n")
+    print(f"Bot {args.owner}:", response, "\n")
     conv.append({"owner": True, "content": response})
