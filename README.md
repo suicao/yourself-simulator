@@ -44,11 +44,10 @@ The output format should look like `./data/sample.json`
 ### Training
 Run the following command:
 ```commandline
-python  train.py --output_dir=output --model_type=gpt2 --do_train --model_name_or_path "NlpHUST/gpt-neo-vi-small" --block_size 128 --per_device_train_batch_size=16 --per_device_eval_batch_size=36 --gradient_accumulation_steps=4 
---save_total_limit=5 --learning_rate=2e-5 --num_train_epochs=5 --save_steps=500  --overwrite_output_dir  --train_data_file=./data/convs.json --logging_steps 500 --output_dir output2 --seed 42069
+python  train.py --output_dir=output --model_type=gpt2 --do_train --model_name_or_path "suicaokhoailang/gpt-neo-vi-comments-finetuned" --block_size 128 --per_device_train_batch_size=16 --per_device_eval_batch_size=36 --gradient_accumulation_steps=4  --save_total_limit=5 --learning_rate=2e-5 --num_train_epochs=5 --save_steps=500  --overwrite_output_dir  --train_data_file=./data/convs.json --logging_steps 500 --seed 42069
 ```
 
-There are a few candidates for the pretrained Vietnamese model, here I picked `NlpHUST/gpt-neo-vi-small`, you may consider:
+There are a few candidates for the pretrained Vietnamese model, here I picked a version of gpt that I finetuned from `NlpHUST/gpt-neo-vi-small` on dataset of 10m Facebook comments, you may consider:
 
 - https://huggingface.co/danghuy1999/gpt2-viwiki
 - https://huggingface.co/imthanhlv/gpt2news
